@@ -86,4 +86,20 @@ public class InventoryDashboardController
             e.printStackTrace();
         }
     }
+
+    @javafx.fxml.FXML
+    public void goToOrderProcessingOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderProcessingView.fxml"));
+            Scene orderScene = new Scene(fxmlLoader.load());
+
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setTitle("Order Processing");
+            currentStage.setScene(orderScene);
+            currentStage.show();
+        } catch (Exception e) {
+            System.out.println("Error loading Order Processing Screen!");
+            e.printStackTrace();
+        }
+    }
 }
