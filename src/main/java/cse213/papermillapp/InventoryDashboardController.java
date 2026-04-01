@@ -1,6 +1,7 @@
 package cse213.papermillapp;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -88,17 +89,36 @@ public class InventoryDashboardController
     }
 
     @javafx.fxml.FXML
-    public void goToOrderProcessingOnClick(ActionEvent actionEvent) {
+    public void goToMaterialIssueOnClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderProcessingView.fxml"));
-            Scene orderScene = new Scene(fxmlLoader.load());
+            // Pointing to the newly renamed FXML file!
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MaterialIssueView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
 
-            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            currentStage.setTitle("Order Processing");
-            currentStage.setScene(orderScene);
-            currentStage.show();
+            // Getting the current window (Stage) and changing the scene
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Issue Materials");
+            stage.setScene(scene);
+            stage.show();
+
         } catch (Exception e) {
-            System.out.println("Error loading Order Processing Screen!");
+            System.out.println("Error loading the Material Issue screen.");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void recordDamagedMaterialOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DamagedMaterialView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Damaged Materials");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            welcomeLabel.setText("Error loading Damaged Material Screen");
             e.printStackTrace();
         }
     }
