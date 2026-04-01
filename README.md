@@ -19,7 +19,7 @@ This application is designed to streamline the operations of a Paper Manufacturi
 
 ## 👥 Group Members
 * **Mohammad Emdad Ullah** - Computer Science & Engineering, IUB
-* [Member Name 2]
+* **Ahmed Sazid Bin Shafi** -Computer Science & Engineering, IUB
 * [Member Name 3]
 * [Member Name 4]
 
