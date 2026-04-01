@@ -122,4 +122,20 @@ public class InventoryDashboardController
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void stockAlertReportOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LowStockReportView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Low Stock Alert Report");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            welcomeLabel.setText("Error loading Low Stock Report Screen");
+            e.printStackTrace();
+        }
+    }
 }

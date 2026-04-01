@@ -82,19 +82,18 @@ public class DamagedMaterialController
 
     @javafx.fxml.FXML
     public void backToDashboardOnClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryDashboardView.fxml"));
-            Scene dashboardScene = new Scene(fxmlLoader.load());
+       try {
+           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryDashboardView.fxml"));
+           Scene dashboardScene = new Scene(fxmlLoader.load());
 
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Dashboard Screen");
-            stage.setScene(dashboardScene);
-            stage.show();
+           Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+           stage.setTitle("Dashboard Scene");
+           stage.setScene(dashboardScene);
+           stage.show();
 
-        } catch (Exception e) {
-            statusLabel.setText("Error loading Dashboard Screen! Check Console");
-            e.printStackTrace();
-
-        }
+       } catch (Exception e) {
+           statusLabel.setText("Error loading Dashboard Screen! Check Console");
+           e.printStackTrace();
+       }
     }
 }
