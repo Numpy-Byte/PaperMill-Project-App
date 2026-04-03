@@ -138,4 +138,20 @@ public class InventoryDashboardController
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void addSupplierOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddSupplierView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Add Supplier Dashboard");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            welcomeLabel.setText("Error loading Add Supplier Screen");
+            e.printStackTrace();
+        }
+    }
 }

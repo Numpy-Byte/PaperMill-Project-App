@@ -15,9 +15,9 @@
             <Font name="Calisto MT Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="238.0" layoutY="102.0" mnemonicParsing="false" onAction="#syncStockOnClick" prefHeight="48.0" prefWidth="124.0" text="Sync Digital Stock" />
+      <Button layoutX="72.0" layoutY="100.0" mnemonicParsing="false" onAction="#syncStockOnClick" prefHeight="48.0" prefWidth="124.0" text="Sync Digital Stock" />
       <Button layoutX="540.0" layoutY="35.0" mnemonicParsing="false" onAction="#logoutOnClick" text="Logout" />
-      <Button layoutX="238.0" layoutY="174.0" mnemonicParsing="false" onAction="#recordDeliveryOnClick" prefHeight="48.0" prefWidth="124.0" text="Record Delivery" />
+      <Button layoutX="250.0" layoutY="100.0" mnemonicParsing="false" onAction="#recordDeliveryOnClick" prefHeight="48.0" prefWidth="124.0" text="Record Delivery" />
       <ImageView fitHeight="80.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Images/PaperMill%20Logo.png" />
@@ -26,8 +26,9 @@
             <DropShadow height="15.0" radius="5.75" spread="0.1" width="10.0" />
          </effect>
       </ImageView>
-      <Button layoutX="238.0" layoutY="244.0" mnemonicParsing="false" onAction="#goToMaterialIssueOnClick" prefHeight="48.0" prefWidth="124.0" text="Issue to Production" />
-      <Button layoutX="209.0" layoutY="382.0" mnemonicParsing="false" onAction="#recordDamagedMaterialOnClick" prefHeight="48.0" prefWidth="182.0" text="Record Damaged Material" />
-      <Button layoutX="238.0" layoutY="308.0" mnemonicParsing="false" onAction="#stockAlertReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Stock Alert Report" />
+      <Button layoutX="416.0" layoutY="100.0" mnemonicParsing="false" onAction="#goToMaterialIssueOnClick" prefHeight="48.0" prefWidth="124.0" text="Issue to Production" />
+      <Button layoutX="234.0" layoutY="183.0" mnemonicParsing="false" onAction="#recordDamagedMaterialOnClick" prefHeight="48.0" prefWidth="182.0" text="Record Damaged Material" />
+      <Button layoutX="72.0" layoutY="183.0" mnemonicParsing="false" onAction="#stockAlertReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Stock Alert Report" />
+      <Button layoutX="443.0" layoutY="183.0" mnemonicParsing="false" onAction="#addSupplierOnClick" prefHeight="48.0" prefWidth="124.0" text="Add Supplier" />
    </children>
 </AnchorPane>
