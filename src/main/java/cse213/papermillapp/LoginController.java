@@ -1,77 +1,99 @@
 package cse213.papermillapp;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.*;
 
 public class LoginController {
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField idTextField;
-    @javafx.fxml.FXML
+    @FXML
     private Label errorLabel;
-    @javafx.fxml.FXML
+    @FXML
     private PasswordField pwTextField;
 
-    private ArrayList<String> validUserIds = new ArrayList<>(Arrays.asList("2430999", "2432035", "2432046", "2230902"));
-    private ArrayList<String> validPasswords = new ArrayList<>(Arrays.asList("1234", "1234", "1234", "1234"));
-
-    @javafx.fxml.FXML
+    @FXML
     public void loginButtonOnClick(ActionEvent actionEvent) {
+        String userId = idTextField.getText().trim();
+        String userPassword = pwTextField.getText().trim();
+
+        if (userId.isEmpty() || userPassword.isEmpty()) {
+            errorLabel.setText("Error: All fields must be filled out!");
+            errorLabel.setStyle("-fx-text-fill: red");
+            return;
+        }
+
+        if(!userId.matches("\\d+") || (userId.length() != 4 && userId.length() != 7)) {
+            errorLabel.setText("Error: Username must be 4 or 7 digits!");
+            errorLabel.setStyle("-fx-text-fill: red");
+            return;
+        }
 
         try {
-            // Get text using your exact fx:id names
-            String userIdText = idTextField.getText().trim();
-            String password = pwTextField.getText().trim();
-
-            // Checking if the ID is exactly 4 or 7 numbers
-            if (!userIdText.matches("\\d+")) {
-                errorLabel.setText("Validation Error: ID must contain only numbers.");
-                errorLabel.setStyle("-fx-text-fill: red;");
-                return;
-            }
-
-            if (userIdText.length() != 4 && userIdText.length() != 7) {
-                errorLabel.setText("Validation Error: ID must be exactly 4 or 7 numbers.");
-                errorLabel.setStyle("-fx-text-fill: red;");
-                return;
-            }
-
+            int typeId = Integer.parseInt(userId);
             boolean loginSuccess = false;
-            for (int i = 0; i < validUserIds.size(); i++) {
-                if (userIdText.equals(validUserIds.get(i)) && password.equals(validPasswords.get(i))) {
-                    loginSuccess = true;
+            String detectedRole = "";
+
+            File file = new File("LoginCredentials.bin");
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            LoginCredentials credentials;
+
+            while (true) {
+                try {
+                    credentials = (LoginCredentials) ois.readObject();
+                    if (credentials.getUserId() == typeId && credentials.getPw().equals(userPassword)) {
+                        loginSuccess = true;
+                        detectedRole = credentials.getUserType();
+                        break;
+                    }
+                } catch (EOFException e) {
                     break;
                 }
             }
 
-            if (loginSuccess) {
-                errorLabel.setText("Login Successful! Loading dashboard...");
-                errorLabel.setStyle("-fx-text-fill: green;");
+            ois.close();
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryDashboardView.fxml"));
+            if(loginSuccess) {
+                String fxmlFilename = "";
+
+                switch (detectedRole) {
+                    case "Inventory Officer":
+                        fxmlFilename = "InventoryDashboardView.fxml";
+                        break;
+                    case "Production Supervisor":
+                        fxmlFilename = "ProductionDashboardView.fxml";
+                        break;
+                    default:
+                        errorLabel.setText("Dashboard for this role is missing!");
+                        errorLabel.setStyle("-fx-text-fill: red");
+                        return;
+                }
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFilename));
                 Scene dashboardScene = new Scene(fxmlLoader.load());
 
-                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                currentStage.setTitle("Dashboard");
-                currentStage.setScene(dashboardScene);
-                currentStage.show();
+                Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("Paper Mill System - " + detectedRole + " Dashboard");
+                stage.setScene(dashboardScene);
+                stage.show();
 
             } else {
-                errorLabel.setText("Verification Error: Incorrect ID or Password.");
-                errorLabel.setStyle("-fx-text-fill: red;");
+                errorLabel.setText("Incorrect ID or Password");
+                errorLabel.setStyle("-fx-text-fill: red");
             }
-        } catch (Exception e) {
-            errorLabel.setText("Error loading Dashboard! Check console.");
+    } catch (Exception e) {
+            errorLabel.setText("There has been an Error! plese Check Console!");
+            errorLabel.setStyle("-fx-text-fill: red");
             e.printStackTrace();
         }
     }

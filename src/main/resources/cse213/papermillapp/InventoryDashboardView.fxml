@@ -30,5 +30,6 @@
       <Button layoutX="234.0" layoutY="183.0" mnemonicParsing="false" onAction="#recordDamagedMaterialOnClick" prefHeight="48.0" prefWidth="182.0" text="Record Damaged Material" />
       <Button layoutX="72.0" layoutY="183.0" mnemonicParsing="false" onAction="#stockAlertReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Stock Alert Report" />
       <Button layoutX="443.0" layoutY="183.0" mnemonicParsing="false" onAction="#addSupplierOnClick" prefHeight="48.0" prefWidth="124.0" text="Add Supplier" />
+      <Button layoutX="72.0" layoutY="266.0" mnemonicParsing="false" onAction="#valuationReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Valuation report" />
    </children>
 </AnchorPane>

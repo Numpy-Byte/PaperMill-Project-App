@@ -154,4 +154,16 @@ public class InventoryDashboardController
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void valuationReportOnClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ValuationReportView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Paper Mill - Valuation Report");
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }
