@@ -66,12 +66,22 @@ public class LoginController {
             if(loginSuccess) {
                 String fxmlFilename = "";
 
-                switch (detectedRole) {
+                System.out.println("The ROLE FOUND IN FILE IS: [" + detectedRole + "] ");
+
+                switch (detectedRole.trim()) {
                     case "Inventory Officer":
-                        fxmlFilename = "InventoryDashboardView.fxml";
+                        fxmlFilename = "InventoryNavigationMenuView.fxml";
                         break;
                     case "Production Supervisor":
                         fxmlFilename = "ProductionDashboardView.fxml";
+                        break;
+                    case "Accountant":
+                    case "HR Officer":
+                    case "Plant Manager":
+                    case "Maintenance Coordinator":
+                    case "Customer":
+                    case "Sales Representative":
+                        fxmlFilename = "DummyDashboardView.fxml";
                         break;
                     default:
                         errorLabel.setText("Dashboard for this role is missing!");

@@ -93,7 +93,7 @@ public class LowStockReportController
     @javafx.fxml.FXML
     public void backToDashboardOnClick(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryDashboardView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryNavigationMenuView.fxml"));
             Scene dashboardScene = new Scene(fxmlLoader.load());
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

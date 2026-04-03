@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="444.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.papermillapp.InventoryNavigationMenuController">
+   <children>
+      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="2.0" prefHeight="91.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" text="Inventory Officer Dashboard">
+         <font>
+            <Font name="Calisto MT Bold" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="72.0" layoutY="100.0" mnemonicParsing="false" onAction="#syncStockOnClick" prefHeight="48.0" prefWidth="124.0" text="Sync Digital Stock" />
+      <Button layoutX="540.0" layoutY="35.0" mnemonicParsing="false" onAction="#logoutOnClick" text="Logout" />
+      <Button layoutX="250.0" layoutY="100.0" mnemonicParsing="false" onAction="#recordDeliveryOnClick" prefHeight="48.0" prefWidth="124.0" text="Record Delivery" />
+      <ImageView fitHeight="80.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/PaperMill%20Logo.png" />
+         </image>
+         <effect>
+            <DropShadow height="15.0" radius="5.75" spread="0.1" width="10.0" />
+         </effect>
+      </ImageView>
+      <Button layoutX="416.0" layoutY="100.0" mnemonicParsing="false" onAction="#goToMaterialIssueOnClick" prefHeight="48.0" prefWidth="124.0" text="Issue to Production" />
+      <Button layoutX="234.0" layoutY="183.0" mnemonicParsing="false" onAction="#recordDamagedMaterialOnClick" prefHeight="48.0" prefWidth="182.0" text="Record Damaged Material" />
+      <Button layoutX="72.0" layoutY="183.0" mnemonicParsing="false" onAction="#stockAlertReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Stock Alert Report" />
+      <Button layoutX="443.0" layoutY="183.0" mnemonicParsing="false" onAction="#addSupplierOnClick" prefHeight="48.0" prefWidth="124.0" text="Add Supplier" />
+      <Button layoutX="72.0" layoutY="266.0" mnemonicParsing="false" onAction="#valuationReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Valuation report" />
+      <Button layoutX="234.0" layoutY="266.0" mnemonicParsing="false" onAction="#checkWarehouseInventoryOnClick" prefHeight="48.0" prefWidth="182.0" text="Check Warehouse Inventory" />
+   </children>
+</AnchorPane>
