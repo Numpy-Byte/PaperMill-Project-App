@@ -2,7 +2,6 @@ package cse213.papermillapp;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -13,9 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
 
 public class LowStockReportController
 {
@@ -65,28 +66,42 @@ public class LowStockReportController
 
     @javafx.fxml.FXML
     public void loadReportOnClick(ActionEvent actionEvent) {
-        ArrayList<Material> allMaterials= new ArrayList<>();
-        allMaterials.add(new Material("MAT-01", "Wood Pulp", 50, 100));
-        allMaterials.add(new Material("MAT-02", "Chemicals", 300, 100));
-        allMaterials.add(new Material("MAT-03", "Dye", 20, 50));
-        allMaterials.add(new Material("MAT-04", "Bleach", 500, 200));
-
         masterLowStockList.clear();
-
-        for (Material material: allMaterials) {
-            if(material.getCurrentStock() < material.getMinThreshold()) {
-                masterLowStockList.add(material);
+        try {
+            File file = new File("Material.bin");
+            if(!file.exists()) {
+                statusLabel.setText("Error: Material.bin not found!");
+                return;
             }
-        }
 
-        lowStockTableView.setItems(FXCollections.observableArrayList(masterLowStockList));
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
 
-        if(masterLowStockList.isEmpty()) {
-            statusLabel.setText("Inventory is healthy!");
-            statusLabel.setStyle("-fx-text-fill: green");
-        } else {
-            statusLabel.setText("Warning " + masterLowStockList.size() + " items are low!");
-            statusLabel.setStyle("-fx-text-fill: red");
+            while (true) {
+                try {
+                    Material m = (Material) ois.readObject();
+
+                    if (m.getCurrentStock() < m.getMinThreshold()) {
+                       masterLowStockList.add(m);
+                    }
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+
+            ois.close();
+
+            if (masterLowStockList.isEmpty()) {
+                statusLabel.setText("Inventory is Healthy");
+                statusLabel.setStyle("-fx-text-fill: green;");
+            } else {
+                statusLabel.setText("Warning: " + masterLowStockList.size() + " items are low!");
+                statusLabel.setStyle("-fx-text-fill: red;");
+            }
+        } catch (Exception e) {
+            statusLabel.setText("Error reading file! Check Console.");
+            e.printStackTrace();
+
         }
     }
 
@@ -110,35 +125,43 @@ public class LowStockReportController
 
     @javafx.fxml.FXML
     public void filterReportOnClick(ActionEvent actionEvent) {
-        String searchText = searchTextField.getText();
+        String searchText = searchTextField.getText().trim().toLowerCase();
+        ArrayList<Material> filteredList = new ArrayList<>();
 
         try {
-            if(searchText == null || searchText.trim().isEmpty()) {
-                lowStockTableView.setItems(FXCollections.observableArrayList(masterLowStockList));
-                statusLabel.setText("Showing all low stock Levels");
-                statusLabel.setStyle("-fx-text-fill: green");
-                return;
-            }
+            File file = new File("Material.bin");
+            if (!file.exists()) return;
 
-            String lowerCaseFilter = searchText.trim().toLowerCase();
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
 
-            ArrayList<Material> filteredList = new ArrayList<>();
+            while (true) {
+                try {
+                    Material m = (Material) ois.readObject();
+                    boolean isLowStock = m.getCurrentStock() < m.getMinThreshold();
+                    boolean matchesSearch = m.getName().toLowerCase().contains(searchText) ||
+                            m.getId().toLowerCase().contains(searchText);
 
-            for(Material m: masterLowStockList) {
-                if(m.getName().toLowerCase().contains(lowerCaseFilter) || m.getId().toLowerCase().contains(lowerCaseFilter)) {
-                    filteredList.add(m);
+                    if (isLowStock && matchesSearch) {
+                        filteredList.add(m);
+                    }
+                } catch (EOFException e) {
+                    break;
                 }
             }
+            ois.close();
 
             lowStockTableView.setItems(FXCollections.observableArrayList(filteredList));
 
-            statusLabel.setText("Filtered applied Found: " + filteredList.size() + " matching items.");
-            statusLabel.setStyle("-fx-text-fill: #4A3F35;");
+            if(filteredList.isEmpty()) {
+                statusLabel.setText("No low-stock items match '" + searchText + "'");
+            } else {
+                statusLabel.setText("Found " + filteredList.size() + " low-stock matches.");
+            }
 
         } catch (Exception e) {
-            statusLabel.setText("Error loading Table View! Check Console");
+            statusLabel.setText("Filter Error! Check Console.");
             e.printStackTrace();
-
         }
     }
 }
