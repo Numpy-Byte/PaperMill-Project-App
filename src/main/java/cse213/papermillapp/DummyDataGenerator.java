@@ -3,7 +3,6 @@ package cse213.papermillapp;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 public class DummyDataGenerator {
     public static void main(String[] args) {
@@ -13,8 +12,6 @@ public class DummyDataGenerator {
 
             oos.writeObject(new LoginCredentials(2430999, "1234", "Inventory Officer"));
             oos.writeObject(new LoginCredentials(2430998, "1234", "Production Supervisor"));
-
-
             oos.writeObject(new LoginCredentials(2430997, "1234", "Accountant"));
             oos.writeObject(new LoginCredentials(2430996, "1234", "HR Officer"));
             oos.writeObject(new LoginCredentials(2430995, "1234", "Plant Manager"));
@@ -23,7 +20,7 @@ public class DummyDataGenerator {
             oos.writeObject(new LoginCredentials(2430992, "1234", "Sales Representative"));
 
             oos.close();
-            System.out.println("SUCCESS: LoginCredencial.bin created with 7-digit IDs!");
+            System.out.println("SUCCESS: LoginCredentials.bin created with 7-digit IDs!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,17 +29,14 @@ public class DummyDataGenerator {
             File file2 = new File("Material.bin");
             ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream(file2));
 
-            ArrayList<Material> materialList = new ArrayList<>();
+            oos2.writeObject(new Material("RM001", "Wood Pulp", "Raw Material", 500, 100));
+            oos2.writeObject(new Material("RM002", "Recycled Paper", "Raw Material", 1200, 200));
+            oos2.writeObject(new Material("CH101", "Caustic Soda", "Chemical", 50, 10));
+            oos2.writeObject(new Material("CH102", "Bleach", "Chemical", 30, 5));
+            oos2.writeObject(new Material("PK201", "Packing Tape", "Packaging", 200, 50));
 
-            materialList.add(new Material("RM001", "Wood Pulp", "Raw Material", 500, 100));
-            materialList.add(new Material("RM002", "Recycled Paper", "Raw Material", 1200, 200));
-            materialList.add(new Material("CH101", "Caustic Soda", "Chemical", 50, 10));
-            materialList.add(new Material("CH102", "Bleach", "Chemical", 30, 5));
-            materialList.add(new Material("PK201", "Packing Tape", "Packaging", 200, 50));
-
-            oos2.writeObject(materialList);
             oos2.close();
-            System.out.println("SUCCESS: Material.bin created with 5 starting items.");
+            System.out.println("SUCCESS: Material.bin created.!");
 
         } catch (Exception e) {
             System.out.println("Error Creating Material file.");
