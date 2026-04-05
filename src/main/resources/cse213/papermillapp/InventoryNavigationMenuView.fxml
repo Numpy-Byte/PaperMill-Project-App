@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="444.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.papermillapp.InventoryNavigationMenuController">
    <children>
-      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="2.0" prefHeight="91.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" text="Inventory Officer Dashboard">
+      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="2.0" prefHeight="91.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" text="Inventory Officer Dashboard" AnchorPane.bottomAnchor="351.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
          <font>
             <Font name="Calisto MT Bold" size="25.0" />
          </font>

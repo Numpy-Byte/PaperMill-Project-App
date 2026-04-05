@@ -19,6 +19,7 @@ public class MainApplicationClass extends Application {
         defaultStage.setTitle("Paper Mill System - Process 1 Login");
         defaultStage.setScene(firstScene);
         defaultStage.show();
+        defaultStage.setResizable(false);
     }
 
     static void main(String[] args) {

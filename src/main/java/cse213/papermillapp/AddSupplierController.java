@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -12,9 +14,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Optional;
 
-public class AddSupplierController
-{
+public class AddSupplierController {
     @javafx.fxml.FXML
     private TextField idTextField;
     @javafx.fxml.FXML
@@ -86,6 +88,8 @@ public class AddSupplierController
             stage.setTitle("Dashboard Scene");
             stage.setScene(dashboardScene);
             stage.show();
+            stage.setResizable(false);
+
         } catch (Exception e) {
             statusLabel.setText("Error loading Dashboard Screen! Check Console");
             e.printStackTrace();
@@ -94,17 +98,32 @@ public class AddSupplierController
 
     @javafx.fxml.FXML
     public void logoutOnClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TheView.fxml"));
-            Scene loginScene = new Scene(fxmlLoader.load());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log out Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to log out?");
 
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Login Screen");
-            stage.setScene(loginScene);
-            stage.show();
-        } catch (Exception e) {
-            statusLabel.setText("Error loading Login Screen! Check Console");
-            e.printStackTrace();
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TheView.fxml"));
+                Scene loginScene = new Scene(fxmlLoader.load());
+
+                Stage currentStage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+                currentStage.setTitle("Paper Mill System - Login");
+                currentStage.setScene(loginScene);
+                currentStage.show();
+                currentStage.setResizable(false);
+
+            } catch (Exception e) {
+                System.out.println("Error returning to login Screen!");
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -8,9 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class ValuationReportController
 {
@@ -34,25 +37,46 @@ public class ValuationReportController
 
     @javafx.fxml.FXML
     public void backtoDashboardOnClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryDashBoardView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InventoryNavigationMenuView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Paper Mill - InventoryDashboard");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
 
 
     }
 
     @javafx.fxml.FXML
     public void logoutOnClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TheView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log out Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to log out?");
 
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("Paper Mill - Login");
-        stage.setScene(scene);
-        stage.show();
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TheView.fxml"));
+                Scene loginScene = new Scene(fxmlLoader.load());
+
+                Stage currentStage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+                currentStage.setTitle("Paper Mill System - Login");
+                currentStage.setScene(loginScene);
+                currentStage.show();
+                currentStage.setResizable(false);
+
+            } catch ( Exception e) {
+                System.out.println("Error returning to login Screen!");
+                e.printStackTrace();
+            }
+        }
     }
 }

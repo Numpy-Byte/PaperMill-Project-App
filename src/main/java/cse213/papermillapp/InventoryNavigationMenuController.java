@@ -35,6 +35,8 @@ public class InventoryNavigationMenuController
             currentStage.setTitle("Sync Digital Stock");
             currentStage.setScene(syncScene);
             currentStage.show();
+            currentStage.setResizable(false);
+
         } catch (Exception e) {
             welcomeLabel.setText("Error loading Sync Screen! Check Console.");
             e.printStackTrace();
@@ -65,6 +67,7 @@ public class InventoryNavigationMenuController
             currentStage.setTitle("Paper Mill System - Login");
             currentStage.setScene(loginScene);
             currentStage.show();
+            currentStage.setResizable(false);
 
         }catch (IOException e) {
             System.out.println("Error loading Login Screen! Check your file path.");
@@ -82,6 +85,8 @@ public class InventoryNavigationMenuController
             currentStage.setTitle("Record Delivery");
             currentStage.setScene(deliveryScene);
             currentStage.show();
+            currentStage.setResizable(false);
+
         } catch (Exception e) {
             welcomeLabel.setText("Error loading Delivery Screen");
             e.printStackTrace();
@@ -100,6 +105,7 @@ public class InventoryNavigationMenuController
             stage.setTitle("Paper Mill - Issue Materials");
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
 
         } catch (Exception e) {
             System.out.println("Error loading the Material Issue screen.");
@@ -117,6 +123,8 @@ public class InventoryNavigationMenuController
             stage.setTitle("Paper Mill - Damaged Materials");
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
+
         } catch (Exception e) {
             welcomeLabel.setText("Error loading Damaged Material Screen");
             e.printStackTrace();
@@ -133,6 +141,8 @@ public class InventoryNavigationMenuController
             stage.setTitle("Paper Mill - Low Stock Alert Report");
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
+
         } catch (Exception e) {
             welcomeLabel.setText("Error loading Low Stock Report Screen");
             e.printStackTrace();
@@ -149,6 +159,8 @@ public class InventoryNavigationMenuController
             stage.setTitle("Paper Mill - Add Supplier Dashboard");
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
+
         } catch (Exception e) {
             welcomeLabel.setText("Error loading Add Supplier Screen");
             e.printStackTrace();
@@ -164,6 +176,7 @@ public class InventoryNavigationMenuController
         stage.setTitle("Paper Mill - Valuation Report");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
 
     }
 
@@ -177,6 +190,7 @@ public class InventoryNavigationMenuController
             stage.setTitle("Paper Mill - Check Warehouse Inventory");
             stage.setScene(warehouseScene);
             stage.show();
+            stage.setResizable(false);
 
         } catch (Exception e) {
             welcomeLabel.setText("Error loading Check Warehouse Inventory Screen");

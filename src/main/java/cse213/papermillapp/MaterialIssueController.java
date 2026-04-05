@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -31,9 +32,9 @@ public class MaterialIssueController
 
     @javafx.fxml.FXML
     public void issueMaterialOnClick(ActionEvent event) {
-        String materialId = materialIdTextField.getText();
-        String materialName = materialNameTextField.getText();
-        String quantityText = quantityTextField.getText();
+        String materialId = materialIdTextField.getText().trim();
+        String materialName = materialNameTextField.getText().trim();
+        String quantityText = quantityTextField.getText().trim();
 
         // Event-3: Validation (Did they leave it blank?)
         if (materialId.isEmpty() || materialName.isEmpty() || quantityText.isEmpty()) {
@@ -45,34 +46,62 @@ public class MaterialIssueController
         try {
             int requestedQuantity = Integer.parseInt(quantityText);
 
-            // Event-4: Verify Material Exists using ArrayList's .contains() method
-            if (!validMaterialIDs.contains(materialId)) {
-                statusLabel.setText("Verification Error: Material ID not found in the warehouse.");
+            File file = new File("Material.bin");
+            if (!file.exists()) {
+                statusLabel.setText("System Error: Material database not found!");
                 statusLabel.setStyle("-fx-text-fill: red;");
                 return;
             }
+            ArrayList<Material> materialsList = new ArrayList<>();
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
 
-            // Event-4 & 5: Verify stock availability and Deduct
-            // (Using our dummy starting stock of 500 for testing)
-            int currentStock = 500;
+            boolean materialFound = false;
+            boolean stockDeducted = false;
 
-            if (requestedQuantity > currentStock) {
-                statusLabel.setText("Error: Insufficient stock! Only " + currentStock + " units available.");
-                statusLabel.setStyle("-fx-text-fill: red;");
-            } else {
-                // Deduct the stock
-                currentStock -= requestedQuantity;
-
-                // Event-6: Display issue confirmation
-                statusLabel.setText("Success! " + requestedQuantity + " units of " + materialName + " sent to Production. Remaining: " + currentStock);
-                statusLabel.setStyle("-fx-text-fill: green;");
+            while (true) {
+                try {
+                    Material m = (Material) ois.readObject();
+                    materialsList.add(m);
+                } catch (EOFException e) {
+                    break;
+                }
             }
 
+            ois.close();
+            for (Material m : materialsList) {
+                if (m.getId().equalsIgnoreCase(materialId)) {
+                    materialFound = true;
+
+                    if (m.getCurrentStock() >= requestedQuantity) {
+                        m.setCurrentStock(m.getCurrentStock() - requestedQuantity);
+                        stockDeducted = true;
+
+                        statusLabel.setText("Success: " + requestedQuantity + " units issued. Remaining: " +
+                                m.getCurrentStock());
+                        statusLabel.setStyle("-fx-text-fill: red;");
+                    }
+                    break;
+                }
+            }
+            if (!materialFound) {
+                statusLabel.setText("Error: Material ID '" + materialId + "' not found in warehouse.");
+                statusLabel.setStyle("-fx-text-fill: red;");
+                return;
+            }
+            if (stockDeducted) {
+                FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                for (Material m : materialsList) {
+                    oos.writeObject(m);
+                }
+                oos.close();
+            }
         } catch (NumberFormatException e) {
             statusLabel.setText("Validation Error: Quantity must be a valid number!");
             statusLabel.setStyle("-fx-text-fill: red;");
         } catch (Exception e) {
-            statusLabel.setText("System Error: Could not process the material issue.");
+            statusLabel.setText("System Error: cold not process the material issue.");
             statusLabel.setStyle("-fx-text-fill: red;");
             e.printStackTrace();
         }
@@ -100,6 +129,7 @@ public class MaterialIssueController
                 currentStage.setTitle("Paper Mill System - Login");
                 currentStage.setScene(loginScene);
                 currentStage.show();
+                currentStage.setResizable(false);
 
             } catch ( Exception e) {
                 statusLabel.setText("Error returning to login Screen!");
@@ -118,6 +148,8 @@ public class MaterialIssueController
             stage.setTitle("Inventory Dashboard");
             stage.setScene(dashboardScene);
             stage.show();
+            stage.setResizable(false);
+
         } catch (Exception e) {
             statusLabel.setText("Error loading Dashboard! Check Console.");
             e.printStackTrace();
