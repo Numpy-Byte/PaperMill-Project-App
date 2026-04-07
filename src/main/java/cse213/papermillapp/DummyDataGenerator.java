@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 
 public class DummyDataGenerator {
     public static void main(String[] args) {
+
         try {
             File f = new File("LoginCredentials.bin");
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
@@ -20,27 +21,59 @@ public class DummyDataGenerator {
             oos.writeObject(new LoginCredentials(2430992, "1234", "Sales Representative"));
 
             oos.close();
-            System.out.println("SUCCESS: LoginCredentials.bin created with 7-digit IDs!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            System.out.println("SUCCESS: LoginCredentials.bin created.");
+        } catch (Exception e) { e.printStackTrace(); }
 
         try {
             File file2 = new File("Material.bin");
             ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream(file2));
 
-            oos2.writeObject(new Material("RM001", "Wood Pulp", "Raw Material", 500, 100));
-            oos2.writeObject(new Material("RM002", "Recycled Paper", "Raw Material", 1200, 200));
-            oos2.writeObject(new Material("CH101", "Caustic Soda", "Chemical", 50, 10));
-            oos2.writeObject(new Material("CH102", "Bleach", "Chemical", 30, 5));
-            oos2.writeObject(new Material("PK201", "Packing Tape", "Packaging", 200, 50));
+            oos2.writeObject(new Material("RM001", "Wood Pulp", "Raw Material", 500, 100, 45.50f));
+            oos2.writeObject(new Material("RM002", "Recycled Paper", "Raw Material", 1200, 200, 15.00f));
+            oos2.writeObject(new Material("CH101", "Caustic Soda", "Chemical", 50, 10, 120.00f));
+            oos2.writeObject(new Material("CH102", "Bleach", "Chemical", 30, 5, 80.50f));
+            oos2.writeObject(new Material("PK201", "Packing Tape", "Packaging", 200, 50, 5.25f));
+            oos2.writeObject(new Material("CH103", "Dye (Low Stock Test)", "Chemical", 5, 50, 200.00f));
 
             oos2.close();
-            System.out.println("SUCCESS: Material.bin created.!");
+            System.out.println("SUCCESS: Material.bin created with prices and test data.");
+        } catch (Exception e) { e.printStackTrace(); }
 
-        } catch (Exception e) {
-            System.out.println("Error Creating Material file.");
-            e.printStackTrace();
-        }
+        try {
+            File file3 = new File("FinishedGoods.bin");
+            ObjectOutputStream oos3 = new ObjectOutputStream(new FileOutputStream(file3));
+
+            oos3.writeObject(new Product(1001, "Paper Roll", "A4 Premium White", 25.00f));
+            oos3.writeObject(new Product(1002, "Paper Roll", "Newspaper Grade", 15.00f));
+            oos3.writeObject(new Product(1003, "Box", "Cardboard Packaging", 5.00f));
+
+            oos3.close();
+            System.out.println("SUCCESS: FinishedGoods.bin created.");
+        } catch (Exception e) { e.printStackTrace(); }
+
+        try {
+            File file4 = new File("Machine.bin");
+            FileOutputStream fos = new FileOutputStream(file4);
+            ObjectOutputStream oos4 = new ObjectOutputStream(fos);
+
+            oos4.writeObject(new Machine("MAC-01", "Pulp Boiler Alpha", "Running"));
+            oos4.writeObject(new Machine("MAC-02", "Paper Roller V2", "Running"));
+            oos4.writeObject(new Machine("MAC-03", "Chemical Mixer", "Maintenance"));
+
+            oos4.close();
+            System.out.println("SUCCESS: Machine.bin created.");
+        } catch (Exception e) { e.printStackTrace(); }
+
+        try {
+            File file5 = new File("Worker.bin");
+            ObjectOutputStream oos5 = new ObjectOutputStream(new FileOutputStream(file5));
+
+            oos5.writeObject(new Worker("W-001", "John Doe", "None"));
+            oos5.writeObject(new Worker("W-002", "Jane Smith", "MAC-01"));
+            oos5.writeObject(new Worker("W-003", "Mike Johnson", "None"));
+
+            oos5.close();
+            System.out.println("SUCCESS: Worker.bin created.");
+        } catch (Exception e) { e.printStackTrace(); }
     }
 }
