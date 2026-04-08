@@ -1,6 +1,7 @@
 package cse213.papermillapp;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -32,6 +33,16 @@ public class ProductionDashboardController {
 
     @javafx.fxml.FXML
     public void calculateWasteOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CalculateWasteView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Set Production Targets");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
@@ -48,8 +59,18 @@ public class ProductionDashboardController {
         }
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void safetyChecklistOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VerifySafetyChecklistView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Safety Checklist");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
@@ -68,10 +89,30 @@ public class ProductionDashboardController {
 
     @javafx.fxml.FXML
     public void teamEfficiencyOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TeamEfficiencyReportView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Team Efficiency");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
     public void machineHistoryOnClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ViewMachineHistoryView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Paper Mill - Machine History");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
@@ -80,7 +121,7 @@ public class ProductionDashboardController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AssignWorkerView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Update Machine Status");
+            stage.setTitle("Paper Mill - Assign Workers");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

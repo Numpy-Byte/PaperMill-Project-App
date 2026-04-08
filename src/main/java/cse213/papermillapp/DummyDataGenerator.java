@@ -1,6 +1,7 @@
 package cse213.papermillapp;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
@@ -66,7 +67,8 @@ public class DummyDataGenerator {
 
         try {
             File file5 = new File("Worker.bin");
-            ObjectOutputStream oos5 = new ObjectOutputStream(new FileOutputStream(file5));
+            FileOutputStream fis5 = new FileOutputStream(file5);
+            ObjectOutputStream oos5 = new ObjectOutputStream(fis5);
 
             oos5.writeObject(new Worker("W-001", "John Doe", "None"));
             oos5.writeObject(new Worker("W-002", "Jane Smith", "MAC-01"));
@@ -74,6 +76,38 @@ public class DummyDataGenerator {
 
             oos5.close();
             System.out.println("SUCCESS: Worker.bin created.");
+        } catch (Exception e) { e.printStackTrace(); }
+
+        try {
+            File file6 = new File("MaintenanceLog.bin");
+            FileOutputStream fos6 = new FileOutputStream(file6);
+            ObjectOutputStream oos6 = new ObjectOutputStream(fos6);
+            oos6.writeObject(new MaintenanceLog("2023-10-01", "MAC-01", "Repair", "Fixed belt"));
+            oos6.writeObject(new MaintenanceLog("2023-10-05", "MAC-02", "Routine", "Oil Change"));
+        } catch (Exception e) { e.printStackTrace(); }
+
+        try {
+            File file7 = new File("RawMaterialUsage.bin");
+            FileOutputStream fos7 = new FileOutputStream(file7);
+            ObjectOutputStream oos7 = new ObjectOutputStream(fos7);
+
+            oos7.writeObject(new RawMaterialUsage("MAC-01", 500));
+            oos7.writeObject(new RawMaterialUsage("MAC-02", 300));
+            oos7.writeObject(new  RawMaterialUsage("MAC-03", 400));
+            oos7.close();
+            System.out.println("SUCCESS: RawMaterialUsage.bin created.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            File file8 = new File("EfficiencyData.bin");
+            ObjectOutputStream oos8 = new ObjectOutputStream(new FileOutputStream(file8));
+            oos8.writeObject(new EfficiencyReport("W-101", "MAC-01", 520, "Excellent"));
+            oos8.writeObject(new EfficiencyReport("W-102", "MAC-02", 300, "Good"));
+            oos8.writeObject(new EfficiencyReport("W-103", "MAC-03", 150, "Needs Improvement"));
+            oos8.close();
+            System.out.println("SUCCESS: EfficiencyData.bin created.");
         } catch (Exception e) { e.printStackTrace(); }
     }
 }

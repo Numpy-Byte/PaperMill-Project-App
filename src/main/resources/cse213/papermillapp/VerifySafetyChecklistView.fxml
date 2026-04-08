@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.papermillapp.VerifySafetyChecklistController">
+   <top>
+      <AnchorPane prefHeight="0.0" prefWidth="600.0" style="-fx-background-color: #FDFBF0;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/PaperMill%20Logo.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <Button layoutX="534.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoutOnClick" text="Logout" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" prefHeight="60.0" prefWidth="427.0" style="-fx-background-color: #FDFBF0;" text="Pre-Operation Safety Checklist">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FDFBF0;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#backToDashboardOnClick" text="Back To Dashboard" />
+            <Label layoutX="156.0" layoutY="50.0" text="Select Machine ID:" />
+            <ComboBox fx:id="machineComboBox" layoutX="263.0" layoutY="46.0" prefWidth="150.0" />
+            <CheckBox fx:id="q1CheckBox" layoutX="284.0" layoutY="104.0" mnemonicParsing="false" />
+            <Label layoutX="56.0" layoutY="104.0" text="Machine gears are properly lubricated?" />
+            <Label layoutX="56.0" layoutY="140.0" text="All safety guards are secured in place?" />
+            <CheckBox fx:id="q2CheckBox" layoutX="284.0" layoutY="140.0" mnemonicParsing="false" />
+            <Label layoutX="59.0" layoutY="179.0" text="Emergency stop button has been tested?" />
+            <CheckBox fx:id="q3CheckBox" layoutX="284.0" layoutY="179.0" mnemonicParsing="false" />
+            <Button fx:id="approveBtn" layoutX="240.0" layoutY="235.0" mnemonicParsing="false" onAction="#approveOperationOnClick" text="Approve Machine Operation" />
+            <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="280.0" prefHeight="47.0" prefWidth="606.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
