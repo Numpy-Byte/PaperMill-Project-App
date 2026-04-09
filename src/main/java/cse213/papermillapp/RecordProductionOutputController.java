@@ -33,7 +33,7 @@ public class RecordProductionOutputController {
     @javafx.fxml.FXML
     public void initialize() {
         machineIdCol.setCellValueFactory(new PropertyValueFactory<>("machineId"));
-        quantityCol.setCellValueFactory(new PropertyValueFactory<>("ProducedQuantity"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<>("producedQuantity"));
 
         loadProductionData();
     }

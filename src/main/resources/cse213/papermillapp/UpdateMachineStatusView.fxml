@@ -41,7 +41,7 @@
             <ComboBox fx:id="machineIdComboBox" layoutX="333.0" layoutY="26.0" prefWidth="150.0" />
             <Label layoutX="256.0" layoutY="82.0" text="New Status:" />
             <ComboBox fx:id="statusComboBox" layoutX="333.0" layoutY="78.0" prefWidth="150.0" />
-            <Button layoutX="308.0" layoutY="123.0" mnemonicParsing="false" onAction="#updateStatusOnClick" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Update Status">
+            <Button layoutX="325.0" layoutY="123.0" mnemonicParsing="false" onAction="#updateStatusOnClick" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Update Status">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>

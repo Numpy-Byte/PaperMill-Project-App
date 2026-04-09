@@ -1,19 +1,29 @@
 package cse213.papermillapp;
 
-public class ProductionRecord {
+import java.io.Serializable;
+
+public class ProductionRecord implements Serializable {
     private String machineId;
-    private  int ProducedQuantity;
+    private int producedQuantity;
 
     public ProductionRecord(String machineId, int producedQuantity) {
         this.machineId = machineId;
-        ProducedQuantity = producedQuantity;
+        this.producedQuantity = producedQuantity;
     }
 
     public String getMachineId() {
         return machineId;
     }
 
+    public void setMachineId(String machineId) {
+        this.machineId = machineId;
+    }
+
     public int getProducedQuantity() {
-        return ProducedQuantity;
+        return producedQuantity;
+    }
+
+    public void setProducedQuantity(int producedQuantity) {
+        this.producedQuantity = producedQuantity;
     }
 }

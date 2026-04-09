@@ -36,7 +36,10 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FDFBF0;" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="14.0" layoutY="387.0" mnemonicParsing="false" onAction="#backToDashboardOnClick" text="Back To Dashboard" />
-            <Button fx:id="CalculateBtn" layoutX="269.0" layoutY="14.0" mnemonicParsing="false" onAction="#CalculateWasteOnClick" text="generate Waste report" />
+            <Button fx:id="CalculateBtn" layoutX="269.0" layoutY="14.0" mnemonicParsing="false" onAction="#CalculateWasteOnClick" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Generate waste report">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font></Button>
             <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="49.0" prefHeight="74.0" prefWidth="655.0" />
             <TableView fx:id="wasteTable" layoutY="143.0" prefHeight="217.0" prefWidth="655.0" style="-fx-background-color: #EFEBE0;">
               <columns>

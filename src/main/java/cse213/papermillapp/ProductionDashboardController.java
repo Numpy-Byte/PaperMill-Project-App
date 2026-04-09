@@ -37,7 +37,7 @@ public class ProductionDashboardController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CalculateWasteView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Set Production Targets");
+            stage.setTitle("Paper Mill - Calculate Waste");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -51,7 +51,7 @@ public class ProductionDashboardController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetProductionTargetView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Set Production Targets");
+            stage.setTitle("Paper Mill - Set Production Target");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

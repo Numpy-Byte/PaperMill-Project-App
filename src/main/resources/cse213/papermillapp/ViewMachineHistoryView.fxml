@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.papermillapp.ViewMachineHistoryController">
    <top>
       <AnchorPane prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #FDFBF0;" BorderPane.alignment="CENTER">
@@ -40,7 +39,10 @@
             <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#backToDashboardOnClick" text="Back To Dashboard" />
             <Label layoutX="194.0" layoutY="29.0" text="Machine ID:" />
             <ComboBox fx:id="machineComboBox" layoutX="266.0" layoutY="25.0" prefWidth="150.0" />
-            <Button layoutX="293.0" layoutY="89.0" mnemonicParsing="false" onAction="#ViewHistoryOnClick" text="View History" />
+            <Button layoutX="293.0" layoutY="89.0" mnemonicParsing="false" onAction="#ViewHistoryOnClick" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="View History">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font></Button>
             <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="149.0" prefHeight="44.0" prefWidth="675.0" />
             <TableView fx:id="historyTable" layoutX="-1.0" layoutY="205.0" prefHeight="200.0" prefWidth="665.0" style="-fx-background-color: #EFEBE0;">
               <columns>

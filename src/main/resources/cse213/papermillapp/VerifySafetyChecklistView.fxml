@@ -44,7 +44,10 @@
             <CheckBox fx:id="q2CheckBox" layoutX="284.0" layoutY="140.0" mnemonicParsing="false" />
             <Label layoutX="59.0" layoutY="179.0" text="Emergency stop button has been tested?" />
             <CheckBox fx:id="q3CheckBox" layoutX="284.0" layoutY="179.0" mnemonicParsing="false" />
-            <Button fx:id="approveBtn" layoutX="240.0" layoutY="235.0" mnemonicParsing="false" onAction="#approveOperationOnClick" text="Approve Machine Operation" />
+            <Button fx:id="approveBtn" layoutX="200.0" layoutY="236.0" mnemonicParsing="false" onAction="#approveOperationOnClick" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Approve Machine Operation">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font></Button>
             <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="280.0" prefHeight="47.0" prefWidth="606.0" />
          </children>
       </AnchorPane>
