@@ -14,9 +14,9 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FDFBF0;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="materialIdTextField" layoutX="198.0" layoutY="42.0" prefHeight="25.0" prefWidth="237.0" promptText="Enter Material ID" />
-            <TextField fx:id="materialNameTextField" layoutX="198.0" layoutY="88.0" prefHeight="25.0" prefWidth="238.0" promptText="Enter Material Name" />
-            <TextField fx:id="quantityTextField" layoutX="198.0" layoutY="134.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter Quantity" />
+            <TextField fx:id="materialIdTextField" layoutX="198.0" layoutY="42.0" prefHeight="25.0" prefWidth="247.0" promptText="Enter Material ID eg: RM001, CH102, PK201" />
+            <TextField fx:id="materialNameTextField" layoutX="198.0" layoutY="88.0" prefHeight="25.0" prefWidth="248.0" promptText="Enter Material Name" />
+            <TextField fx:id="quantityTextField" layoutX="198.0" layoutY="134.0" prefHeight="25.0" prefWidth="248.0" promptText="Enter Quantity" />
             <Label fx:id="statusLabel" alignment="CENTER" layoutX="6.0" layoutY="225.0" prefHeight="58.0" prefWidth="600.0" />
             <Button layoutX="241.0" layoutY="186.0" mnemonicParsing="false" onAction="#issueMaterialOnClick" prefHeight="39.0" prefWidth="130.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Issue to Production">
                <font>

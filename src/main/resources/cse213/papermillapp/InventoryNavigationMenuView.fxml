@@ -6,18 +6,21 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="444.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.papermillapp.InventoryNavigationMenuController">
+<AnchorPane prefHeight="528.0" prefWidth="636.0" style="-fx-background-color: #FDFBF0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.papermillapp.InventoryNavigationMenuController">
    <children>
-      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="2.0" prefHeight="91.0" prefWidth="624.0" style="-fx-background-color: #FDFBF0;" text="Inventory Officer Dashboard" AnchorPane.bottomAnchor="351.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
+      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" prefHeight="64.0" prefWidth="434.0" style="-fx-background-color: #FDFBF0;" text="Inventory Officer Dashboard" AnchorPane.bottomAnchor="464.0" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Calisto MT Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="72.0" layoutY="100.0" mnemonicParsing="false" onAction="#syncStockOnClick" prefHeight="48.0" prefWidth="124.0" text="Sync Digital Stock" />
-      <Button layoutX="540.0" layoutY="35.0" mnemonicParsing="false" onAction="#logoutOnClick" text="Logout" />
-      <Button layoutX="250.0" layoutY="100.0" mnemonicParsing="false" onAction="#recordDeliveryOnClick" prefHeight="48.0" prefWidth="124.0" text="Record Delivery" />
+      <Button layoutX="568.0" layoutY="14.0" mnemonicParsing="false" onAction="#logoutOnClick" text="Logout">
+      <font>
+         <Font name="Bookman Old Style Bold" size="12.0" />
+      </font>
+      </Button>
       <ImageView fitHeight="80.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Images/PaperMill%20Logo.png" />
@@ -26,11 +29,49 @@
             <DropShadow height="15.0" radius="5.75" spread="0.1" width="10.0" />
          </effect>
       </ImageView>
-      <Button layoutX="416.0" layoutY="100.0" mnemonicParsing="false" onAction="#goToMaterialIssueOnClick" prefHeight="48.0" prefWidth="124.0" text="Issue to Production" />
-      <Button layoutX="234.0" layoutY="183.0" mnemonicParsing="false" onAction="#recordDamagedMaterialOnClick" prefHeight="48.0" prefWidth="182.0" text="Record Damaged Material" />
-      <Button layoutX="72.0" layoutY="183.0" mnemonicParsing="false" onAction="#stockAlertReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Stock Alert Report" />
-      <Button layoutX="443.0" layoutY="183.0" mnemonicParsing="false" onAction="#addSupplierOnClick" prefHeight="48.0" prefWidth="124.0" text="Add Supplier" />
-      <Button layoutX="72.0" layoutY="266.0" mnemonicParsing="false" onAction="#valuationReportOnClick" prefHeight="48.0" prefWidth="124.0" text="Valuation report" />
-      <Button layoutX="234.0" layoutY="266.0" mnemonicParsing="false" onAction="#checkWarehouseInventoryOnClick" prefHeight="48.0" prefWidth="182.0" text="Check Warehouse Inventory" />
+      <VBox alignment="CENTER" layoutX="-1.0" layoutY="81.0" prefHeight="444.0" prefWidth="636.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#checkWarehouseInventoryOnClick" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Check Warehouse Inventory">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#valuationReportOnClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Valuation report">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#syncStockOnClick" prefHeight="36.0" prefWidth="147.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Sync Digital Stock">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#recordDeliveryOnClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Record Delivery">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToMaterialIssueOnClick" prefHeight="36.0" prefWidth="151.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Issue to Production">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#recordDamagedMaterialOnClick" prefHeight="48.0" prefWidth="182.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Record Damaged Material">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#stockAlertReportOnClick" prefHeight="36.0" prefWidth="145.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Stock Alert Report">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#addSupplierOnClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom, #2D5A27, #1E3C1A); -fx-text-fill: white; -fx-background-radius: 15; -fx-padding: 10;" text="Add Supplier">
+            <font>
+               <Font name="Bookman Old Style Bold" size="12.0" />
+            </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

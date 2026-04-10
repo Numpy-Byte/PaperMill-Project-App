@@ -62,7 +62,7 @@ public class AddSupplierController {
             oos.writeObject(newSupplier);
             oos.close();
 
-            statusLabel.setText("Supploer saved successfully!");
+            statusLabel.setText("Supplier saved successfully!");
             statusLabel.setStyle("-fx-text-fill: green");
 
             idTextField.clear();
